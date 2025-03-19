@@ -32,6 +32,8 @@ trait HasOptions
 
     protected float | Closure $velocityFilterWeight = 0.7;
 
+    protected string | Closure $loadStrategy = 'visible';
+
     /**
      * Filename of the downloaded image. Without extension.
      */
@@ -167,6 +169,18 @@ trait HasOptions
         return $this;
     }
 
+    /**
+     * Strategy used to load the signature pad.
+     * If you notice that the signature pad is not loading correctly in modals, consider changing this value to "idle".
+     * See https://async-alpine.dev/docs/strategies/ for more details.
+     */
+    public function loadStrategy(string | Closure | null $loadStrategy): static
+    {
+        $this->loadStrategy = $loadStrategy;
+
+        return $this;
+    }
+
     public function getDotSize(): float
     {
         return $this->evaluate($this->dotSize);
@@ -225,5 +239,10 @@ trait HasOptions
     public function getVelocityFilterWeight(): float
     {
         return $this->evaluate($this->velocityFilterWeight);
+    }
+
+    public function getLoadStrategy(): string
+    {
+        return $this->evaluate($this->loadStrategy);
     }
 }

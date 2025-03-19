@@ -14,6 +14,7 @@
         $downloadActionDropdownPlacement = $getDownloadActionDropdownPlacement() ?? 'bottom-start';
         $isUndoable = $isUndoable();
         $isConfirmable = $isConfirmable();
+        $loadStrategy = $getLoadStrategy();
         
         $clearAction = $getAction('clear');
         $downloadAction = $getAction('download');
@@ -22,7 +23,7 @@
     @endphp
 
     <div
-        ax-load="visible"
+        ax-load="{{ $getLoadStrategy() }}"
         ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('filament-autograph', 'saade/filament-autograph') }}"
         ax-load-css="{{ \Filament\Support\Facades\FilamentAsset::getStyleHref('filament-autograph-styles', 'saade/filament-autograph') }}"
         x-data="signaturePad({
