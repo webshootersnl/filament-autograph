@@ -2,8 +2,7 @@
 
 namespace Saade\FilamentAutograph\Forms\Components\Actions;
 
-use Filament\Forms\Components\Actions\Action;
-use Filament\Support\Enums\ActionSize;
+use Filament\Actions\Action;
 use Saade\FilamentAutograph\Forms\Components\SignaturePad;
 
 class ClearAction extends Action
@@ -19,14 +18,12 @@ class ClearAction extends Action
 
         $this->iconButton()->icon('heroicon-o-arrow-path-rounded-square')->color('gray');
 
-        $this->label(fn (): string => __('filament-autograph::filament-autograph.actions.clear.label'));
+        $this->label(fn(): string => __('filament-autograph::filament-autograph.actions.clear.label'));
 
         $this->livewireClickHandlerEnabled(false);
 
-        $this->size(ActionSize::Small);
-
         $this->visible(
-            fn (SignaturePad $component): bool => $component->isClearable()
+            fn(SignaturePad $component): bool => $component->isClearable()
         );
     }
 }
